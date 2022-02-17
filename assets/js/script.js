@@ -88,3 +88,27 @@ var quizQs = [
     answer: "c",
   },
 ]
+
+var timerEl = document.getElementById("countdown");
+var startButtonEl = document.querySelector("#start");
+
+
+
+
+function countdown() {
+    var timeLeft = 120;
+
+    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+    var timeInterval = setInterval(function() {
+        if (timeLeft === 0) {
+        clearInterval(timeInterval);
+        timerEl.textContent = "";
+        // displayMessage();
+        } else {
+        timerEl.textContent = timeLeft + " seconds left";
+        timeLeft--;
+        }
+    }, 1000);
+}
+
+startButtonEl.addEventListener("click", countdown);
