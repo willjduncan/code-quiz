@@ -101,24 +101,29 @@ var answerCEl = document.getElementById("pc");
 var answerDEl = document.getElementById("pd");
 var qi = 0;
 var points = 0;
+const quizTime = 3
+var timeLeft = timeLeft;
+
 
 function quiz() {  
-
     createChoice();
 };
 
 var createChoice = function() {
-        titleEl.textContent = quizQs[qi].q;
+    if (qi >= quizQs.length) {
+        endgame ();
+    }
+    titleEl.textContent = quizQs[qi].q;
 
-        answerAEl.textContent = quizQs[qi].a;
-        answerAEl.className = "answer-op";
-        answerBEl.textContent = quizQs[qi].b;
-        answerBEl.className = "answer-op";
-        answerCEl.textContent = quizQs[qi].c;
-        answerCEl.className = "answer-op";
-        answerDEl.textContent = quizQs[qi].d;
-        answerDEl.className = "answer-op";
-}
+    answerAEl.textContent = quizQs[qi].a;
+    answerAEl.className = "answer-op";
+    answerBEl.textContent = quizQs[qi].b;
+    answerBEl.className = "answer-op";
+    answerCEl.textContent = quizQs[qi].c;
+    answerCEl.className = "answer-op";
+    answerDEl.textContent = quizQs[qi].d;
+    answerDEl.className = "answer-op";
+};
 
 
 var answerHandler = function (event) {
@@ -126,11 +131,11 @@ var answerHandler = function (event) {
     var correct = quizQs[qi].answer; 
     console.log(targetEl);
     if (targetEl.matches("#p" + correct)) {
-    console.log("yay");
-    points= points + 10;
-    answerReturnEl.textContent = "Right!"
-    qi++
-    createChoice();
+        console.log("yay");
+        points= points + 10;
+        answerReturnEl.textContent = "Right!"
+        qi++
+        createChoice();
     } else if (targetEl.matches(".answer-op")) {
         console.log("uh oh")
         answerReturnEl.textContent = "Wrong!"
@@ -139,27 +144,57 @@ var answerHandler = function (event) {
     }
 };
 
+function endgame() {
+    var finalTime = timeLeft;
+    timeLeft = 0;
+    points = points + finalTime;
 
+    substanceEl.textContent = "";
+    answerReturnEl.textContent = "";
+
+    if (finalTime === 0) {
+        titleEl.textContent = "You finished with a score of " + points + " points!"
+    } else {
+        titleEl.textContent = "You finished with " + finalTime + " seconds left. Your final score is " + points + " points!" 
+    }
+
+
+    introEl.textContent = "play again?";
+    var playAgainButtonEl = document.createElement("button");
+    playAgainButtonEl.textContent = "Play Again";
+    playAgainButtonEl.className = "btn";
+    // playAgainButtonEl.setAttribute("data-task-id", taskId);
+    substanceEl.appendChild(playAgainButtonEl);   
+    playAgainButtonEl.addEventListener("click", restart);
+};
+
+function restart () {
+    location.reload();
+}
+function reset() {
+    introEl.textContent = "";
+    startButtonEl.textContent = "";
+    points = 0;
+    timeLeft = quizTime;
+    qi = 0;
+};
 
 //TIMER FUNCTION
 function countdown() {
-    //TIME AMOUNT
-    var timeLeft = 120;
-
-    introEl.textContent = "";
-    startButtonEl.textContent = "";
+    reset();
     quiz();
 
     var timeInterval = setInterval(function() {
         if (timeLeft === 0) {
         clearInterval(timeInterval);
         timerEl.textContent = "";
+        endgame ();
         } else {
         timerEl.textContent = timeLeft + " seconds left";
         timeLeft--;
         }
     }, 1000);
-}
+};
 
 startButtonEl.addEventListener("click", countdown);
 substanceEl.addEventListener("click", answerHandler);
