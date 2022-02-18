@@ -94,50 +94,66 @@ var startButtonEl = document.querySelector("#start");
 var titleEl = document.querySelector(".title");
 var introEl = document.querySelector(".intro-text");
 var substanceEl = document.querySelector(".substance");
-var answerAEl = document.getElementById("p1");
-var answerBEl = document.getElementById("p2");
-var answerCEl = document.getElementById("p3");
-var answerDEl = document.getElementById("p4");
+var answerReturnEl = document.querySelector(".answer-return");
+var answerAEl = document.getElementById("pa");
+var answerBEl = document.getElementById("pb");
+var answerCEl = document.getElementById("pc");
+var answerDEl = document.getElementById("pd");
+var qi = 0;
+var points = 0;
 
-function quiz() {
+function quiz() {  
 
-    introEl.textContent = "";
-    startButtonEl.textContent = "";
+    createChoice();
+};
 
+var createChoice = function() {
+        titleEl.textContent = quizQs[qi].q;
 
-    for (var i=0; i<quizQs.length; i++) {
-        titleEl.textContent = quizQs[i].q;
-
-        answerAEl.textContent = quizQs[i].a;
+        answerAEl.textContent = quizQs[qi].a;
         answerAEl.className = "answer-op";
-        answerBEl.textContent = quizQs[i].b;
+        answerBEl.textContent = quizQs[qi].b;
         answerBEl.className = "answer-op";
-        answerCEl.textContent = quizQs[i].c;
+        answerCEl.textContent = quizQs[qi].c;
         answerCEl.className = "answer-op";
-        answerDEl.textContent = quizQs[i].d;
+        answerDEl.textContent = quizQs[qi].d;
         answerDEl.className = "answer-op";
+}
 
-        quizQs[i].answer.value 
+
+var answerHandler = function (event) {
+    var targetEl = event.target;
+    var correct = quizQs[qi].answer; 
+    console.log(targetEl);
+    if (targetEl.matches("#p" + correct)) {
+    console.log("yay");
+    points= points + 10;
+    answerReturnEl.textContent = "Right!"
+    qi++
+    createChoice();
+    } else if (targetEl.matches(".answer-op")) {
+        console.log("uh oh")
+        answerReturnEl.textContent = "Wrong!"
+        qi++
+        createChoice();
     }
 };
 
 
-//for every question
 
-
-
-
+//TIMER FUNCTION
 function countdown() {
+    //TIME AMOUNT
     var timeLeft = 120;
 
+    introEl.textContent = "";
+    startButtonEl.textContent = "";
     quiz();
 
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function() {
         if (timeLeft === 0) {
         clearInterval(timeInterval);
         timerEl.textContent = "";
-        // displayMessage();
         } else {
         timerEl.textContent = timeLeft + " seconds left";
         timeLeft--;
@@ -146,3 +162,4 @@ function countdown() {
 }
 
 startButtonEl.addEventListener("click", countdown);
+substanceEl.addEventListener("click", answerHandler);

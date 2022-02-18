@@ -75,7 +75,7 @@ main {
 }
 .answer-op {
     color: var(--primary-color);
-    width: 40%;
+    width: 55%;
     line-height: 1.5;
     font-size: 22px;
     padding: 10px;
@@ -87,4 +87,9 @@ main {
     color: #ededed;
     border-radius: 15px;
 }
-
+.answer-return {
+    font-size: 32px;
+    color: var(--secondary-color);
+    opacity: .8;
+    text-align: center;
+}
