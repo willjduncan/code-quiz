@@ -91,12 +91,46 @@ var quizQs = [
 
 var timerEl = document.getElementById("countdown");
 var startButtonEl = document.querySelector("#start");
+var titleEl = document.querySelector(".title");
+var introEl = document.querySelector(".intro-text");
+var substanceEl = document.querySelector(".substance");
+var answerAEl = document.getElementById("p1");
+var answerBEl = document.getElementById("p2");
+var answerCEl = document.getElementById("p3");
+var answerDEl = document.getElementById("p4");
+
+function quiz() {
+
+    introEl.textContent = "";
+    startButtonEl.textContent = "";
+
+
+    for (var i=0; i<quizQs.length; i++) {
+        titleEl.textContent = quizQs[i].q;
+
+        answerAEl.textContent = quizQs[i].a;
+        answerAEl.className = "answer-op";
+        answerBEl.textContent = quizQs[i].b;
+        answerBEl.className = "answer-op";
+        answerCEl.textContent = quizQs[i].c;
+        answerCEl.className = "answer-op";
+        answerDEl.textContent = quizQs[i].d;
+        answerDEl.className = "answer-op";
+
+        quizQs[i].answer.value 
+    }
+};
+
+
+//for every question
 
 
 
 
 function countdown() {
     var timeLeft = 120;
+
+    quiz();
 
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function() {

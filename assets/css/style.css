@@ -73,4 +73,18 @@ main {
     padding: 10px;
     margin: 0 0 15px 0;
 }
+.answer-op {
+    color: var(--primary-color);
+    width: 40%;
+    line-height: 1.5;
+    font-size: 22px;
+    padding: 10px;
+    font-weight:bold;
+    
+}
+.answer-op:hover {
+    background-color: var(--primary-color);
+    color: #ededed;
+    border-radius: 15px;
+}
 
