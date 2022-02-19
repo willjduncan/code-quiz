@@ -42,13 +42,13 @@ body {
     font-size: 20px;
   }
 
-  header a {
+  .highscore {
     text-decoration: none;
     color: var(--primary-color);
     padding: 10px;
 }
 
-.highscore a:hover {
+.highscore:hover {
     background: var(--primary-color);
     color: var(--tertiary-color);
     border-radius: 10px;
@@ -93,3 +93,17 @@ main {
     opacity: .8;
     text-align: center;
 }
+.initial-input {
+    margin: 5px;
+    border: 1px solid var(--secondary-color);
+    font-size: 16px;
+    padding: 7px 15px;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.75);
+}
+.initial-input:focus {
+    background-color: rgba(255,255,255, 1);
+    outline: none;
+    }
