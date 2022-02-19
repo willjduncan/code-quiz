@@ -104,7 +104,7 @@ var answerCEl = document.getElementById("pc");
 var answerDEl = document.getElementById("pd");
 var qi = 0;
 var points = 0;
-const quizTime = 3
+const quizTime = 120
 var timeLeft = timeLeft;
 
 
@@ -144,6 +144,7 @@ var answerHandler = function (event) {
         //IF THE ANSWER CLICKED IS WRONG, TELL THE USER AND MOVE ON TO THE NEXT QUESTION
     } else if (targetEl.matches(".answer-op")) {
         answerReturnEl.textContent = "Wrong!"
+        timeLeft = timeLeft -5;
         qi++
         createChoice();
     }
@@ -158,11 +159,11 @@ function endgame() {
     substanceEl.textContent = "";
     answerReturnEl.textContent = "";
     //TELL THE USER THEIR SCORE
-    if (finalTime === 0) {
-        titleEl.textContent = "Your final score is " + points + " points!"
-    } else {
-        titleEl.textContent = "You finished with " + finalTime + " seconds left. Your final score is " + points + " points!" 
-    }
+    // if (finalTime === 0) {
+        titleEl.textContent = "Your final score is " + points + " points!";
+    // } else {
+    //     titleEl.textContent = "You finished with " + finalTime + " seconds left. Your final score is " + points + " points!" 
+    // }
 
     introEl.textContent = "Enter initials:";
     var initialTypeEl = document.createElement("input");
@@ -178,7 +179,7 @@ function endgame() {
 
 
     substanceEl.appendChild(submitScoreEl);
-    
+
     submitScoreEl.addEventListener("click", function(event) {
 
         var user = {
@@ -198,15 +199,23 @@ function endgame() {
         if (!existing) {
             existing = existing ? existing.split(',') : [];
         }
+
         // debugger;
         if (!existing[0]) {
             existing.push(user);
         } else {
+            debugger;
             for (var i=0; i < existing.length; i++) {
-                } if (newScore > existing[i].score) {
+                var oldScore = existing[i].score;
+                if (newScore > oldScore) {
                     existing.splice(i, 0, user);
-                } else {
+                    break;
+                } else if ((i+1) === existing.length) {
                     existing.push(user);
+                    break;
+                }  else {
+                    console.log("next");
+                } 
             }
         };
         
@@ -223,7 +232,8 @@ function endgame() {
 function highscorePage() {
     substanceEl.textContent = "";
     titleEl.textContent = "High Scores";
-    debugger;
+    startButtonEl.textContent = ""
+    timeLeft = 0;
 
     var existing = JSON.parse(localStorage.getItem('users'));
     console.log(existing);
@@ -268,7 +278,7 @@ function countdown() {
     quiz();
     //SET THE TIME SO THAT IT COUNTS DOWN VISIBLY, AND SO THAT IT GOES TO ENDGAME WHEN THE TIMER RUNS OUT
     var timeInterval = setInterval(function() {
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
         clearInterval(timeInterval);
         timerEl.textContent = "";
         endgame ();
