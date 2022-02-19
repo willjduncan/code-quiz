@@ -10,23 +10,13 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    color: var(--tertiary-color);
-    font-family: Helvetica, Arial, sans-serif;
-}
 
 body {
     background: #ededed;
-    color: var(--grey);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  
-  header {
+}
+
+header {
     background: var(--secondary);
     border-bottom: 5px solid var(--primary);
     padding: 20px 35px;
@@ -34,15 +24,15 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-  }
-  
-  header div {
+}
+
+header div {
     color: var(--tertiary);
     margin: 5px 0 20px;
     font-size: 20px;
-  }
+}
 
-  .highscore {
+.highscore {
     text-decoration: none;
     color: var(--primary-color);
     padding: 10px;
@@ -53,26 +43,31 @@ body {
     color: var(--tertiary-color);
     border-radius: 10px;
 }
+
 main {
     text-align: center;
     border-bottom: 2px solid var(--secondary-color);
     width: 60%;
     margin: 10px auto;
 }
+
 .title {
     font-size: 40px;
     padding: 15px;
 }
+
 .substance {
     padding: 20px;
     line-height: 1.5;
 }
+
 .btn {
     background: var(--primary-color);
     color: #ededed;
     padding: 10px;
     margin: 0 0 15px 0;
 }
+
 .answer-op {
     color: var(--primary-color);
     width: 70%;
@@ -82,17 +77,20 @@ main {
     font-weight:bold;
     
 }
+
 .answer-op:hover {
     background-color: var(--primary-color);
     color: #ededed;
     border-radius: 15px;
 }
+
 .answer-return {
     font-size: 32px;
     color: var(--secondary-color);
     opacity: .8;
     text-align: center;
 }
+
 .initial-input {
     margin: 5px;
     border: 1px solid var(--secondary-color);
@@ -103,10 +101,12 @@ main {
     border-radius: 10px;
     background-color: rgba(255,255,255, 0.75);
 }
+
 .initial-input:focus {
     background-color: rgba(255,255,255, 1);
     outline: none;
 }
+
 .score-card {
     background-color: var(--tertiary-color);
     margin: 10px auto;
@@ -114,8 +114,8 @@ main {
     margin-bottom: 15px;
     line-height: 1.5;
     width: 20%;
-    /* text-align: center; */
 }
+
 .score-card::first-line {
     font-weight: bold;
 }

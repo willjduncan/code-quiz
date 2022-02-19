@@ -1,13 +1,13 @@
 //QUIZ ITEMS IN THE FORM OF AN ARRAY
 var quizQs = [
-{
-    q: "Which Survivor has NOT played two seasons in a row?",
-    a: "Amanda Kimmel",
-    b: "Russell Swan",
-    c: "Rupert Boneham",
-    d: "Ozzy Lusth",
-    answer: "d",
-  },
+// {
+//     q: "Which Survivor has NOT played two seasons in a row?",
+//     a: "Amanda Kimmel",
+//     b: "Russell Swan",
+//     c: "Rupert Boneham",
+//     d: "Ozzy Lusth",
+//     answer: "d",
+//   },
   {
     q: "Which of the following is NOT a flex property?",
     a: "text-align",
@@ -107,11 +107,6 @@ var points = 0;
 const quizTime = 120
 var timeLeft = timeLeft;
 
-
-function quiz() {  
-    createChoice();
-};
-
 var createChoice = function() {
     //ONCE THE LAST QUESTION IS SUBMITTED, GO TO ENDGAME
     if (qi >= quizQs.length) {
@@ -130,7 +125,6 @@ var createChoice = function() {
     answerDEl.className = "answer-op";
 };
 
-
 var answerHandler = function (event) {
     var targetEl = event.target;
     var correct = quizQs[qi].answer; 
@@ -141,7 +135,7 @@ var answerHandler = function (event) {
         answerReturnEl.textContent = "Correct!"
         qi++
         createChoice();
-        //IF THE ANSWER CLICKED IS WRONG, TELL THE USER AND MOVE ON TO THE NEXT QUESTION
+        //IF THE ANSWER CLICKED IS WRONG, TELL THE USER, SUBTRACT 5 SECONDS, AND MOVE ON TO THE NEXT QUESTION
     } else if (targetEl.matches(".answer-op")) {
         answerReturnEl.textContent = "Wrong!"
         timeLeft = timeLeft -5;
@@ -159,12 +153,9 @@ function endgame() {
     substanceEl.textContent = "";
     answerReturnEl.textContent = "";
     //TELL THE USER THEIR SCORE
-    // if (finalTime === 0) {
-        titleEl.textContent = "Your final score is " + points + " points!";
-    // } else {
-    //     titleEl.textContent = "You finished with " + finalTime + " seconds left. Your final score is " + points + " points!" 
-    // }
+    titleEl.textContent = "Your final score is " + points + " points!";
 
+    //CREATE INPUT AND BUTTON TO SUBMIT INITIALS
     introEl.textContent = "Enter initials:";
     var initialTypeEl = document.createElement("input");
     initialTypeEl.type = "text";
@@ -176,37 +167,34 @@ function endgame() {
     submitScoreEl.className = "btn";
     submitScoreEl.textContent = "Submit Score"
     submitScoreEl.type = "submit"
-
-
     substanceEl.appendChild(submitScoreEl);
 
+    //CREATE LISTENER TO PROCESS THE NAME/SCORE SUBMISSION
     submitScoreEl.addEventListener("click", function(event) {
 
+        //CREATE OBJECT TO STORE NAME AND SCORE
         var user = {
             score: points,
             name: initialTypeEl.value,
         };
-        console.log(user);
 
-        // Get the existing data
+        // GET EXISTING DATA
         var existing = localStorage.getItem('users');
-        console.log(existing);
         existing = JSON.parse(existing);
-        var newScore = user.score;
 
-        // If no existing data, create an array
-        // Otherwise, convert the localStorage string to an array
+        // IF NO EXISTING DATA, CREATE AN ARRAY
         if (!existing) {
             existing = existing ? existing.split(',') : [];
         }
 
-        // debugger;
+        // IF THERE IS NO EXISTING DATA, GO AHEAD AND ADD THE USER TO THE EMPTY ARRAY
         if (!existing[0]) {
             existing.push(user);
+        //OTHERWISE, GO THROUGH THE ARRAY AND PLACE THE SCORE WITHIN IT ACCORDING TO SCORE AMOUNT
         } else {
-            debugger;
             for (var i=0; i < existing.length; i++) {
                 var oldScore = existing[i].score;
+                var newScore = user.score;
                 if (newScore > oldScore) {
                     existing.splice(i, 0, user);
                     break;
@@ -218,46 +206,39 @@ function endgame() {
                 } 
             }
         };
-        
-        console.log(existing);
 
-        // Save back to localStorage
+        // SAVE NEWLY EDITED ARRAY TO localStorage
         localStorage.setItem('users', JSON.stringify(existing));
 
+        //GO TO HIGHSCORE PAGE
         highscorePage();
     });
 };
 
-
 function highscorePage() {
+    //CLEAR OUT ANY PRE-EXISTING CONTENT
     substanceEl.textContent = "";
     titleEl.textContent = "High Scores";
     startButtonEl.textContent = ""
     timeLeft = 0;
-
+    //GET EXISTING ARRAY
     var existing = JSON.parse(localStorage.getItem('users'));
-    console.log(existing);
-    console.log(existing.length);
-    console.log(existing[0].name);
-    console.log(existing[0].score);
 
+    //GO THROUGH ARRAY AND ADD IT TO THE CONTENT
     for (var i=0; i< existing.length; i++) {
         var entryEl = document.createElement("p");
         entryEl.textContent = existing[i].name + " - " + existing[i].score;
         scoreCardEl.appendChild(entryEl);
     }
     
+    //ADD OPTION TO PLAY AGAIN
     introEl.textContent = "play again?";
     var playAgainButtonEl = document.createElement("button");
     playAgainButtonEl.textContent = "Play Again";
     playAgainButtonEl.className = "btn";
     substanceEl.appendChild(playAgainButtonEl);   
     playAgainButtonEl.addEventListener("click", restart);
-
-
-    localStorage.getItem("")
-
-}
+};
 
 //RELOAD THE PAGE, SO A USER CAN START AGAIN
 function restart () {
@@ -275,7 +256,7 @@ function reset() {
 //TIMER FUNCTION
 function countdown() {
     reset();
-    quiz();
+    createChoice();
     //SET THE TIME SO THAT IT COUNTS DOWN VISIBLY, AND SO THAT IT GOES TO ENDGAME WHEN THE TIMER RUNS OUT
     var timeInterval = setInterval(function() {
         if (timeLeft <= 0) {

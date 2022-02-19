@@ -43,7 +43,7 @@ Next, I added a timer that would start once the Begin button was clicked. From t
 
 Once the test was able to run through each question through clicking answer choices, I set up conditions to tell the user whether their answers were right or wrong, and created a variable to add up points. 
 
-<!-- From there, I created the endgame function, which would tell the user their score and have them submit their initials. I found a way to save the first submission to localStorage, but struggled to find a way to arrange the stored names and scores in order of highscore. MORE -->
+From there, I created the endgame function, which would tell the user their score and have them submit their initials. I found a way to save the first submission to localStorage, but struggled to find a way to arrange the stored names and scores in order of highscore. After much debugging and confusion, I realized it was a mislocated bracket causing the issues. 
 
 After I solved that, I added the final touches to the high score page, making sure I could retrieve those stored scores. From there, I cleaned up the code, added aspects like subtracting time for wrong questions, and added more CSS to give the new elements an acceptable aesthetic. 
 
@@ -53,19 +53,19 @@ Now, when the user goes on, they see a home screen from which they can either be
 
 ## Installation
 
-<!-- My repository on GitHub is named password-generator. The link to this repository is below.
+My repository on GitHub is named code-quiz. The link to this repository is below.
 
-[https://github.com/willjduncan/password-generator.git](https://github.com/willjduncan/password-generator.git)
+[git@github.com:willjduncan/code-quiz.git](git@github.com:willjduncan/code-quiz.git)
 
 
 The link to the live website is below: 
 
-[https://willjduncan.github.io/password-generator/](https://willjduncan.github.io/password-generator/) -->
+[https://willjduncan.github.io/code-quiz/](https://willjduncan.github.io/code-quiz/)
 
 
 ## Usage
 
-<!-- Screenshots are shown of the code near the end, but still incorrect. Note the use of console.log and the debugger being used to try and follow the code, as well as the use of commentary to categorize each section of code. 
+Screenshots are shown of the HTML, CSS, and JavaScript pages, all built from scratch. 
 
 ![screenshot midwork part 1](/assets/images/screenshot-midwork-1.png)
 ![screenshot midwork part 2](/assets/images/screenshot-midwork-2.png)
