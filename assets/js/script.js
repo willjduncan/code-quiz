@@ -137,14 +137,12 @@ var answerHandler = function (event) {
     console.log(targetEl);
     // IF THE ANSWER CLICKED IS CORRECT, ADD 10 POINTS, TELL THE USER, AND MOVE ON TO THE NEXT QUESTION
     if (targetEl.matches("#p" + correct)) {
-        console.log("yay");
         points= points + 10;
-        answerReturnEl.textContent = "Right!"
+        answerReturnEl.textContent = "Correct!"
         qi++
         createChoice();
         //IF THE ANSWER CLICKED IS WRONG, TELL THE USER AND MOVE ON TO THE NEXT QUESTION
     } else if (targetEl.matches(".answer-op")) {
-        console.log("uh oh")
         answerReturnEl.textContent = "Wrong!"
         qi++
         createChoice();
@@ -180,62 +178,58 @@ function endgame() {
 
 
     substanceEl.appendChild(submitScoreEl);
+    
     submitScoreEl.addEventListener("click", function(event) {
 
         var user = {
             score: points,
             name: initialTypeEl.value,
         };
+        console.log(user);
 
         // Get the existing data
         var existing = localStorage.getItem('users');
+        console.log(existing);
+        existing = JSON.parse(existing);
+        var newScore = user.score;
 
         // If no existing data, create an array
         // Otherwise, convert the localStorage string to an array
-        existing = existing ? existing.split(',') : [];
-
-        for (var i=0; i < existing.length; i++) {
-            if (user.score > exisiting[i].score) {
-                existing.splice(i, 0, user);
-            } else {
-                existing.push(user);
+        if (!existing) {
+            existing = existing ? existing.split(',') : [];
+        }
+        // debugger;
+        if (!existing[0]) {
+            existing.push(user);
+        } else {
+            for (var i=0; i < existing.length; i++) {
+                } if (newScore > existing[i].score) {
+                    existing.splice(i, 0, user);
+                } else {
+                    existing.push(user);
             }
         };
+        
+        console.log(existing);
 
         // Save back to localStorage
-        localStorage.setItem('users', existing.toString());
+        localStorage.setItem('users', JSON.stringify(existing));
 
         highscorePage();
     });
-
-
-    // // check localStorage for high score, if it's not there, use 0
-    // var highScore = localStorage.getItem("highscore");
-    // if (highScore === null) {
-    //     highScore = 0;
-    // }
-    // // if player has more money than the high score, player has new high score!
-    // if (points > highScore) {
-    //     localStorage.setItem("highscore", points);
-    //     localStorage.setItem("name", playerInfo.name);
-
-    //     alert(playerInfo.name + " now has the high score of " + points + "!");
-    // } 
-    // else {
-    //     alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
-    // }
-
-
-    //return initials-score
 };
 
 
 function highscorePage() {
     substanceEl.textContent = "";
     titleEl.textContent = "High Scores";
+    debugger;
 
-
-    var existing = localStorage.getItem('users');
+    var existing = JSON.parse(localStorage.getItem('users'));
+    console.log(existing);
+    console.log(existing.length);
+    console.log(existing[0].name);
+    console.log(existing[0].score);
 
     for (var i=0; i< existing.length; i++) {
         var entryEl = document.createElement("p");
