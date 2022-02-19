@@ -11,65 +11,61 @@ SO THAT I can gauge my progress compared to my peers
 
 This assignment is aimed at combining my skills with HTML, CSS, and JavaScript into one great product: a coding quiz. By completing the assignment I will gain greater familiarity with the critical tools I've learned so far and gain confidence in my ability to handle bigger projects on my own. 
 
-With the HTML and CSS provided, I have been endowed with the responsibility of building a password generator using JavaScript. The practice will help familiarize myself both with JavaScript and with seeking answers on the web to typicl developer issues. Furthermore, the job will help me become more comfortable using Chrome DevTools as a debugger. 
+The coding quiz, once completed, will be a useful way to test what I've learned so far while also challenging whatever peers who may wish to test their knowledge. The questions will be arranged in a way that they will be easy to alter and add to, which means that I can update the questions to more challenging ones that also span a greater breadth of coding skills as I continue to learn in the bootcamp.
 
-The password generator itself will be able, with the conditions set by the user, to create passwords of various lengths and of various characters. Having such a tool will help keep data safe and my passwords diverse. 
+My job is to build the website so that:
 
-My job is to build the JavaScript so that:
+GIVEN I am taking a code quiz
 
-GIVEN I need a new, secure password
+WHEN I click the start button
 
-WHEN I click the button to generate a password
+THEN a timer starts and I am presented with a question
 
-THEN I am presented with a series of prompts for password criteria
+WHEN I answer a question
 
-WHEN prompted for password criteria
+THEN I am presented with another question
 
-THEN I select which criteria to include in the password
+WHEN I answer a question incorrectly
 
-WHEN prompted for the length of the password
+THEN time is subtracted from the clock
 
-THEN I choose a length of at least 8 characters and no more than 128 characters
+WHEN all questions are answered or the timer reaches 0
 
-WHEN asked for character types to include in the password
+THEN the game is over
 
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
+WHEN the game is over
 
-WHEN I answer each prompt
+THEN I can save my initials and score
 
-THEN my input should be validated and at least one character type should be selected
+First, I wrote the basic HTML, including the introduction and a few empty divs that I'd fill later on. I added a little bit of CSS next to give it a basic, but pleasant appearance. Then I created my questions, forming it in an array. 
 
-WHEN all prompts are answered
+Next, I added a timer that would start once the Begin button was clicked. From there, I focused on finding a way to run through my array. I initially tried a for loop, but I couldn't manage to find a way to get the for loop to wait for a response click before moving on to the next question. Instead, I dissembled the for loop and made the quiz move on to the next array object by adding one to the index variable and calling the createChoice function again. This worked. 
 
-THEN a password is generated that matches the selected criteria
+Once the test was able to run through each question through clicking answer choices, I set up conditions to tell the user whether their answers were right or wrong, and created a variable to add up points. 
 
-WHEN the password is generated
+<!-- From there, I created the endgame function, which would tell the user their score and have them submit their initials. I found a way to save the first submission to localStorage, but struggled to find a way to arrange the stored names and scores in order of highscore. MORE -->
 
-THEN the password is either displayed in an alert or written to the page
+After I solved that, I added the final touches to the high score page, making sure I could retrieve those stored scores. From there, I cleaned up the code, added aspects like subtracting time for wrong questions, and added more CSS to give the new elements an acceptable aesthetic. 
 
-First, I set up the prompts asking the user what character sets were allowed and how many characters were desired in the password length, and then added the variables at the top to store the answers. Then I created a password generator using the approved character set and the math.random() function in symphony with math.floor to give an integer index number. 
 
-Next, I had to double check the password to make sure at least one of each approved character family appeared in the password. I created a separate function and used if/else statements to check the password, and return a true/false value depending. This caused me the most trouble, because I initially had the password regenerate within the doubleCheck, which caused the correct result to be found, but then be replaced with the original, incorrect password as soon as it left the doubleCheck. With the help of debugging and tinkering, I realized that the issue was to be found in the nesting. I solved the problem by having the doubleCheck simply provide a true/false statement, and having that true/false statement reflected in the password generator (gen()) through an answer/false statement. Only by bringing the answer all the way out of the gen() function was I able to then ask the gen() function to try again if it came out false. 
+Now, when the user goes on, they see a home screen from which they can either begin the quiz or visit the high score page. The quiz runs through every question, logging the correct and wrong answers and keeping track of both the score and the time. When the quiz is finished, either by time-default or by completion, the user is told their score and is prompted to submit it, where it will be stored along with previous scores. If the player wishes to play again, there is a button redirecting them to the opening title.  
 
-Once the doubleCheck was completed, I placed the entire passwordGenerator() function around the prompts so that they only appeared once the button was clicked. After testing it a few times, I noticed that if the user presses the button again with different character conditions, they were not met. I realized this is because the totalChar variable carries over iteration to iteration, so I added a way to clear it once a correct password was found.  
-
-Now, when the button is pressed, the conditions are asked and followed, and at least one of each approved character type appears in the resulting password. Furthermore, upon multiple clicks, the password generator continues to perform its function, making it a reliable generator. 
 
 ## Installation
 
-My repository on GitHub is named password-generator. The link to this repository is below.
+<!-- My repository on GitHub is named password-generator. The link to this repository is below.
 
 [https://github.com/willjduncan/password-generator.git](https://github.com/willjduncan/password-generator.git)
 
 
 The link to the live website is below: 
 
-[https://willjduncan.github.io/password-generator/](https://willjduncan.github.io/password-generator/)
+[https://willjduncan.github.io/password-generator/](https://willjduncan.github.io/password-generator/) -->
 
 
 ## Usage
 
-Screenshots are shown of the code near the end, but still incorrect. Note the use of console.log and the debugger being used to try and follow the code, as well as the use of commentary to categorize each section of code. 
+<!-- Screenshots are shown of the code near the end, but still incorrect. Note the use of console.log and the debugger being used to try and follow the code, as well as the use of commentary to categorize each section of code. 
 
 ![screenshot midwork part 1](/assets/images/screenshot-midwork-1.png)
 ![screenshot midwork part 2](/assets/images/screenshot-midwork-2.png)
@@ -77,11 +73,11 @@ Screenshots are shown of the code near the end, but still incorrect. Note the us
 
 A final screenshot of the completed website in DevTools is added as to show how Chrome DevTools was used. Note in the Watch section three of the variables I tried to follow to solve my debugging 
 
-![screenshot on DevTools](/assets/images/screenshot-devtools.png)
+![screenshot on DevTools](/assets/images/screenshot-devtools.png) -->
 
 ## Credits
 
-No classmates or instructors were used in the making of this website. The coding boot camp Professional README Guide found at https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide was used as a template for this README. The license was picked from [https://choosealicense.com/](https://choosealicense.com/), as suggested by the README Guide aforementioned. The WHEN/THEN section of this README was taken directly from the homework assignment Acceptance Criteria. The Robot-Gladiator project of Module 3 was used as an example. Stack Overflow, MDN Web Docs, and Google were critical to my success. 
+No classmates or instructors were used in the making of this website. The coding boot camp Professional README Guide found at https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide was used as a template for this README. The license was picked from [https://choosealicense.com/](https://choosealicense.com/), as suggested by the README Guide aforementioned. The WHEN/THEN section of this README was taken directly from the homework assignment Acceptance Criteria. The Robot-Gladiator project of Module 3, the Taskinator project of Module 4, the in-class assignments of week 4, and the CSS of Run-Buddy, were all used as examples. Stack Overflow, MDN Web Docs, W3, and Google were critical to my success. Data-flair.training has a JavaScript quiz which was used as inspiration, though no question was directly copied into my quiz. Coolers.co was used to help pick the CSS colors. 
 
 ## License
 
@@ -112,12 +108,10 @@ SOFTWARE.
 
 
 TO-DO
-1. create a high score page
-2. save high scores to local storage
-3. run through array questions
-6. set up a timer-runs-out scenario
-7. set up a finish-in-time scenario
-8. have a sccore tallyer
+1. finish the high score page
+2. make sure multiple scores on the high score page appear
+3. 
 9. connect high score page to first page, and make sure when you go there, the timer cuts out.
 10. add README
+11. SUBTRACT TIME FROM THE CLOCK FOR EACH WRONG ANSWER
 
