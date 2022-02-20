@@ -106,16 +106,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-
-
-
-TO-DO
-1. finish the high score page
-2. make sure multiple scores on the high score page appear
-3. 
-9. connect high score page to first page, and make sure when you go there, the timer cuts out.
-10. add README
-11. SUBTRACT TIME FROM THE CLOCK FOR EACH WRONG ANSWER
-
