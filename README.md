@@ -67,13 +67,17 @@ The link to the live website is below:
 
 Screenshots are shown of the HTML, CSS, and JavaScript pages, all built from scratch. 
 
-![screenshot midwork part 1](/assets/images/screenshot-midwork-1.png)
-![screenshot midwork part 2](/assets/images/screenshot-midwork-2.png)
+![screenshot of HTML](/assets/images/Screenshot-HTML.png)
+![screenshot of CSS](/assets/images/Screenshot-CSS.png)
+![screenshot of JavaScript](/assets/images/Screenshot-JavaScript.png)
 
 
-A final screenshot of the completed website in DevTools is added as to show how Chrome DevTools was used. Note in the Watch section three of the variables I tried to follow to solve my debugging 
+Screenshots are also provided of the quiz in its main forms: the beginning, mid-quiz, the score submission, and highscore page. Note how the high scores are in order, how the question choices are highlighted, and the presence or lacketherof of the timer.
 
-![screenshot on DevTools](/assets/images/screenshot-devtools.png) -->
+![screenshot of Start](/assets/images/Screenshot-Intro.png)
+![screenshot of Questions](/assets/images/Screenshot-Question.png)
+![screenshot of Endgame](/assets/images/Screenshot-Endgame.png)
+![screenshot of Highscore Page](/assets/images/Screenshot-Highscore.png)
 
 ## Credits
 
